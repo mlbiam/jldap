@@ -80,7 +80,7 @@ public abstract class Debug {
      * The value for this variable is set during compile time
      *  TRUE = Debug build, FALSE = Release build
      */
-    public static final boolean LDAP_DEBUG = true;
+    public static final boolean LDAP_DEBUG = false;
 
     /**
      * The string value used to enable all debug tracing.
