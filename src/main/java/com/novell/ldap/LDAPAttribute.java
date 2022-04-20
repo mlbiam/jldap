@@ -453,7 +453,11 @@ public class LDAPAttribute implements java.lang.Cloneable,
         int i = 0;
 
         for (ByteArray value : this.values) {
-            sva[i] = new String(value.getValue());
+            try {
+                sva[i] = new String(value.getValue(),"UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                // do nothing
+            }
             i++;
         }
 
