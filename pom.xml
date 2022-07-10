@@ -64,7 +64,26 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+			<plugin>
+				<groupId>dev.sigstore</groupId>
+				<artifactId>sigstore-maven-plugin</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<executions>
+				  <execution>
+					<id>sigstore-sign</id>
+					<goals>
+					  <goal>sign</goal>
+					</goals>
+					<!-- optional configuration parameters; sensible defaults are chosen
+					<configuration>
+					  <emailAddress>YOUR-EMAIL-ADDRESS-HERE</emailAddress>
+					  <outputSigningCert>signingCert.pem</outputSigningCert>
+					  <sslVerification>false</sslVerification>
+					</configuration>
+					-->
+				  </execution>
+				</executions>
+			  </plugin>
 			
 		</plugins>
 		<pluginManagement>
