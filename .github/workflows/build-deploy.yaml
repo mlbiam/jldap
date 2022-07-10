@@ -20,4 +20,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build with Maven
+        with:
+          TS_RELEASE_REPO: ${{ secrets.TS_RELEASE_REPO }}
         run: mvn package deploy
