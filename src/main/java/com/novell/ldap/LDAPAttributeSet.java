@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.novell.ldap.util.Base64;
 import com.novell.ldap.util.LDAPXMLHandler;
@@ -68,6 +69,11 @@ public class LDAPAttributeSet
     public LDAPAttributeSet() {
         super();
         this.clear();
+    }
+    
+    
+    public Set keySet() {
+    	return this.map.keySet();
     }
 
 // ---  methods not defined in Set ---

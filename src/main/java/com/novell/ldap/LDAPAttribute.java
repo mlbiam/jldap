@@ -76,6 +76,13 @@ public class LDAPAttribute implements java.lang.Cloneable,
 		this.values = new LinkedList<ByteArray>();
 	}
     
+	
+	public ByteArray getAndRemoveFirstValue() {
+		ByteArray value = this.values.pollFirst();
+		return value;
+	}
+	
+	
     /**
      * Constructs an attribute with copies of all values of the input
      * attribute.
@@ -1154,4 +1161,24 @@ public class LDAPAttribute implements java.lang.Cloneable,
     public void setAllValues(LinkedList<ByteArray> newVals) {
         this.values = newVals;
     }
+
+
+	public void removeRange(LDAPEntry parent) {
+		
+		int index = this.name.indexOf(';');
+		if (index >= 0) {
+			parent.getAttributeSet().remove(this.name);
+			
+			this.name = this.name.substring(0,index);
+	        this.baseName = this.getBaseName( this.name );
+	        this.subTypes = this.getSubtypes( this.name );
+	        
+	        parent.getAttributeSet().remove(this.name);
+	        parent.getAttributeSet().add(this);
+		}
+		
+		
+		
+		
+	}
 }

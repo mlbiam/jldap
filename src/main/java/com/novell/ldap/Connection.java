@@ -21,7 +21,9 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import com.novell.ldap.asn1.*;
 import com.novell.ldap.client.*;
@@ -53,6 +55,8 @@ import com.novell.ldap.resources.*;
 /*package*/
 final class Connection
 {
+	
+	static ExecutorService executor = Executors.newCachedThreadPool(); 
 
     private Object writeSemaphore = new Object();
     private int    writeSemaphoreOwner = 0;
@@ -1101,7 +1105,10 @@ final class Connection
     /* package */
     final void startReader() throws LDAPException {
         // Start Reader Thread
-        Thread r = new Thread(new ReaderThread());
+        
+    	//Future future = executor.submit(new ReaderThread());
+    	
+    	Thread r = new Thread(new ReaderThread());
         r.setDaemon(true); // If the last thread running, allow exit.
         r.start();
         waitForReader(r);
